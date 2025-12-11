@@ -1,5 +1,5 @@
 aiogram==3.1.0
-okx-v5
+okx
 pandas==2.1.0
 numpy==1.26.0
 ta==0.10.2
