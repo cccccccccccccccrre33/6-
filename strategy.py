@@ -6,16 +6,12 @@ def get_signals():
     signals = []
     for pair in PAIRS:
         data = get_indicator_data(pair)
-        # Простая логика: если EMA50 > EMA200 → LONG, иначе SHORT
-        if data['ema50'] > data['ema200']:
-            side = "LONG"
-        else:
-            side = "SHORT"
+        side = "LONG" if data['ema50'] > data['ema200'] else "SHORT"
         signals.append({
             "pair": pair,
             "side": side,
-            "entry": data['close'] * 1.001,  # пример точки входа
-            "exit": data['close'] * 0.995,   # пример точки выхода
+            "entry": data['close'] * 1.001,
+            "exit": data['close'] * 0.995,
             "leverage": 5
         })
     return signals
