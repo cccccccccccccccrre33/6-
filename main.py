@@ -8,15 +8,15 @@ dp = Dispatcher()
 
 async def send_signals():
     while True:
-        signals = get_signals()  # Возвращает список сигналов по 7 парам
+        signals = get_signals()
         for signal in signals:
-            msg = f"{signal['pair']} | {signal['side']} | Entry: {signal['entry']} | Exit: {signal['exit']} | Leverage: {signal['leverage']}"
+            msg = f"{signal['pair']} | {signal['side']} | Entry: {signal['entry']:.2f} | Exit: {signal['exit']:.2f} | Leverage: {signal['leverage']}"
             await bot.send_message(chat_id=CHAT_ID, text=msg)
-        await asyncio.sleep(3600)  # Повтор каждые 1 час
+        await asyncio.sleep(3600)  # раз в час
 
 @dp.message()
 async def start(message: types.Message):
-    await message.answer("✅ Сигнальный бот запущен! Он будет присылать торговые сигналы по выбранным криптовалютам.")
+    await message.answer("✅ Сигнальный бот запущен! Он будет присылать торговые сигналы.")
 
 async def main():
     asyncio.create_task(send_signals())
